@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Courses</h1>
+    <form action="/courses" method="POST">
+      {% csrf_token %}
+      <p>Courses</p>
+      <input type="text" name="name">
+      <p>Description</p>
+      <input type="text" name="description"><br><br>
+      <input type="submit" value="submit">
+    </form>
+
+    {% for course in courses %}
+      <p> Course Name: {{ course.name }} </p>
+      <p> Description: {{ course.description }} </p>
+      <p> Created_At: {{ course.created_at }} </p>
+      <p> Updated_At: {{ course.updated_at }} </p>
+      <a href="/destroy/{{course.id}}" method="POST">Remove</a>
+    {% endfor %}
+
+  </body>
+</html>
